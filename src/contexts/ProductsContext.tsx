@@ -8,7 +8,7 @@ import {
 import api from "../services/api";
 import { v4 as uuid } from "uuid";
 
-interface IProduct {
+export interface IProduct {
   id: string;
   name: string;
   category: string;
@@ -22,6 +22,9 @@ interface IProductsContextData {
   productList: IProduct[];
   addProduct: (newProduct: TNewProduct) => Promise<void>;
   removeProduct: (id: string) => Promise<void>;
+  editProduct: (editedProduct: TNewProduct) => Promise<void>;
+  selectedProduct: IProduct | null;
+  setSelectedProduct: React.Dispatch<React.SetStateAction<IProduct | null>>;
 }
 
 interface IProductsProviderProps {
@@ -34,6 +37,7 @@ export const ProductsContext = createContext<IProductsContextData>(
 
 export function ProductsProvider({ children }: IProductsProviderProps) {
   const [productList, setProductList] = useState<IProduct[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
   async function getProductList() {
     try {
@@ -53,7 +57,7 @@ export function ProductsProvider({ children }: IProductsProviderProps) {
 
     try {
       await api.post("/products", payload);
-      setProductList([...productList, payload]);
+      getProductList();
     } catch (err) {
       console.log(err);
     }
@@ -62,15 +66,16 @@ export function ProductsProvider({ children }: IProductsProviderProps) {
   async function removeProduct(id: string) {
     try {
       await api.delete(`/products/${id}`);
-      setProductList((state) => state.filter((product) => product.id !== id));
+      getProductList();
     } catch (err) {
       console.log(err);
     }
   }
 
-  async function editProduct(id: string) {
+  async function editProduct(editedProduct: TNewProduct) {
     try {
-      await api.put(`/products/${id}`);
+      await api.patch(`/products/${selectedProduct?.id}`, editedProduct);
+      getProductList();
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +87,14 @@ export function ProductsProvider({ children }: IProductsProviderProps) {
 
   return (
     <ProductsContext.Provider
-      value={{ productList, addProduct, removeProduct }}
+      value={{
+        productList,
+        addProduct,
+        removeProduct,
+        editProduct,
+        selectedProduct,
+        setSelectedProduct,
+      }}
     >
       {children}
     </ProductsContext.Provider>

@@ -1,16 +1,10 @@
 import { PencilSimpleLine, Trash } from "phosphor-react";
+import { useModal } from "../contexts/ModalContext";
 import { useProducts } from "../contexts/ProductsContext";
 
-interface HomeProps {
-  onOpenNewProductsModal: () => void;
-  onOpenEditProductModal: () => void;
-}
-
-export function Home({
-  onOpenNewProductsModal,
-  onOpenEditProductModal,
-}: HomeProps) {
-  const { productList, removeProduct } = useProducts();
+export function Home() {
+  const { productList, removeProduct, setSelectedProduct } = useProducts();
+  const { OpenNewProductsModal, OpenEditProductModal } = useModal();
 
   console.log(productList);
 
@@ -20,7 +14,7 @@ export function Home({
         <header className="w-full pb-8 flex justify-between">
           <h1 className="text-5xl font-bold">Produtos</h1>
           <button
-            onClick={onOpenNewProductsModal}
+            onClick={OpenNewProductsModal}
             className="py-2 px-4 text-base font-bold bg-gray-800 text-gray-100 transition-colors duration-300 hover:bg-gray-700"
           >
             Adicionar Produto
@@ -72,7 +66,10 @@ export function Home({
                     <Trash weight="fill" className="h-8 w-8" />
                   </button>
                   <button
-                    onClick={onOpenEditProductModal}
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      OpenEditProductModal();
+                    }}
                     className="ml-8 transition-colors duration-300 hover:text-gray-600"
                   >
                     <PencilSimpleLine weight="fill" className="h-8 w-8" />

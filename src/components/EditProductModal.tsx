@@ -1,26 +1,34 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import ReactModal from "react-modal";
-import { useProducts } from "../contexts/ProductsContext";
+import { IProduct, useProducts } from "../contexts/ProductsContext";
 
-interface NewProductsModalProps {
+interface EditProductModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
 }
 
-export function NewProductsModal({
+export function EditProductModal({
   isOpen,
   onRequestClose,
-}: NewProductsModalProps) {
+}: EditProductModalProps) {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState(0);
 
-  const { addProduct } = useProducts();
+  const { selectedProduct, editProduct } = useProducts();
 
-  async function handleAddNewProduct(e: FormEvent) {
+  useEffect(() => {
+    if (selectedProduct) {
+      setName(selectedProduct.name);
+      setCategory(selectedProduct.category);
+      setPrice(selectedProduct.price);
+    }
+  }, [selectedProduct]);
+
+  async function handleEditProduct(e: FormEvent) {
     e.preventDefault();
 
-    await addProduct({ name, category, price });
+    await editProduct({ name, category, price });
 
     onRequestClose();
     setName("");
@@ -36,10 +44,10 @@ export function NewProductsModal({
       overlayClassName="react-modal-overlay"
       className="w-full max-w-[576px] bg-gray-200 relative p-12"
     >
-      <form onSubmit={handleAddNewProduct} className="flex flex-col">
+      <form onSubmit={handleEditProduct} className="flex flex-col">
         <div className="flex gap-10 text-4xl font-medium mb-8">
           <button onClick={onRequestClose}>{"<"}</button>
-          <h2>Adicionar Produto</h2>
+          <h2>Editar Produto</h2>
         </div>
 
         <label htmlFor="name">Nome</label>
