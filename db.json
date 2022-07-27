@@ -34,6 +34,13 @@
       "price": 9.84,
       "id": "879a049e-99cd-477d-9d63-8e8f96cafddc",
       "createdAt": "2022-07-27T17:50:57.972Z"
+    },
+    {
+      "name": "Refrigerante",
+      "category": "Bebidas",
+      "price": 8.5,
+      "id": "9736287f-cb5c-4019-9787-a3c0f7775817",
+      "createdAt": "2022-07-27T17:58:24.619Z"
     }
   ]
 }
