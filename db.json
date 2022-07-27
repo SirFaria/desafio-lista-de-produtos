@@ -1,74 +1,39 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "banana",
+      "name": "Banana",
       "category": "Frutas",
-      "price": 9.99,
-      "createdAt": "21/10/2022"
+      "price": 15,
+      "id": "2db690d2-5d39-4023-b590-78e158a2dae4",
+      "createdAt": "2022-07-27T17:02:09.730Z"
     },
     {
-      "id": 2,
-      "name": "maçã",
+      "name": "Maçã",
       "category": "Frutas",
-      "price": 9.99,
-      "createdAt": "21/10/2022"
+      "price": 5.45,
+      "id": "536c08ec-5361-4bc2-b071-a30e04857e72",
+      "createdAt": "2022-07-27T17:12:38.809Z"
     },
     {
-      "id": 3,
-      "name": "morango",
-      "category": "Frutas",
-      "price": 9.99,
-      "createdAt": "21/10/2022"
+      "name": "Arroz",
+      "category": "Alimentos",
+      "price": 24.99,
+      "id": "5bcb0469-c5a5-45ac-9129-4799bd564556",
+      "createdAt": "2022-07-27T17:13:29.922Z"
     },
     {
-      "id": 4,
-      "name": "abacaxi",
-      "category": "Frutas",
-      "price": 9.99,
-      "createdAt": "21/10/2022"
+      "name": "Feijão",
+      "category": "Alimentos",
+      "price": 15.99,
+      "id": "2d393562-4826-47ac-8818-26694686cc30",
+      "createdAt": "2022-07-27T17:13:50.579Z"
     },
     {
-      "id": 9,
-      "name": "teste 1",
-      "category": "testes",
-      "price": 98,
-      "createdAt": "2022-07-27T04:14:53.773Z"
-    },
-    {
-      "id": "545d08b4-1b53-4067-a31d-0b03480662c3",
-      "name": "teste 4",
-      "category": "Testes",
-      "price": 75,
-      "createdAt": "2022-07-27T04:19:14.451Z"
-    },
-    {
-      "name": "teste 7",
-      "category": "Testes",
-      "price": 21,
-      "id": "ccf37c8f-51eb-4c23-9554-b53b9fd6884d",
-      "createdAt": "2022-07-27T14:29:22.080Z"
-    },
-    {
-      "name": " 12312",
-      "category": "sdafa",
-      "price": 12,
-      "id": "3964802e-44e5-4d14-be6b-652afe71110a",
-      "createdAt": "2022-07-27T14:31:30.671Z"
-    },
-    {
-      "name": "akjfnasdf",
-      "category": "a",
-      "price": 123,
-      "id": "6705d1a6-1b35-4e3c-aea8-420ad203adaf",
-      "createdAt": "2022-07-27T14:37:22.441Z"
-    },
-    {
-      "name": "asdsa",
-      "category": "sada",
-      "price": 35,
-      "id": "56e8d361-0117-4ed8-bf46-b020380414d9",
-      "createdAt": "2022-07-27T14:41:38.081Z"
+      "name": "Sabão em pó",
+      "category": "Limpeza",
+      "price": 9.84,
+      "id": "879a049e-99cd-477d-9d63-8e8f96cafddc",
+      "createdAt": "2022-07-27T17:50:57.972Z"
     }
   ]
 }
