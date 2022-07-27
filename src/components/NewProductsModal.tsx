@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import ReactModal from "react-modal";
+import api from "../services/api";
+import { v4 as uuid } from "uuid";
+import { useProducts } from "../contexts/ProductsContext";
 
 interface NewProductsModalProps {
   isOpen: boolean;
@@ -14,7 +17,18 @@ export function NewProductsModal({
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState(0);
 
-  function handleAddNewProduct() {}
+  const { addProduct } = useProducts();
+
+  async function handleAddNewProduct(e: FormEvent) {
+    e.preventDefault();
+
+    await addProduct({ name, category, price });
+
+    onRequestClose();
+    setName("");
+    setCategory("");
+    setPrice(0);
+  }
 
   return (
     <ReactModal
@@ -24,7 +38,7 @@ export function NewProductsModal({
       overlayClassName="react-modal-overlay"
       className="w-full max-w-[576px] bg-gray-200 relative p-12"
     >
-      <form action="" className="flex flex-col">
+      <form onSubmit={handleAddNewProduct} className="flex flex-col">
         <div className="flex gap-10 text-4xl font-medium mb-8">
           <button onClick={onRequestClose}>{"<"}</button>
           <h2>Adicionar Produto</h2>

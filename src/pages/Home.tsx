@@ -1,26 +1,11 @@
-import { useEffect, useState } from "react";
-import ReactModal from "react-modal";
-import { NewProductsModal } from "../components/NewProductsModal";
-import api from "../services/api";
-
-interface IProduct {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  createdAt: string;
-}
+import { useProducts } from "../contexts/ProductsContext";
 
 interface HomeProps {
   onOpenNewProductsModal: () => void;
 }
 
 export function Home({ onOpenNewProductsModal }: HomeProps) {
-  const [productList, setProductList] = useState<IProduct[]>([]);
-
-  useEffect(() => {
-    api.get("/products").then((data) => setProductList(data.data));
-  }, []);
+  const { productList } = useProducts();
 
   console.log(productList);
 

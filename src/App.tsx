@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+
 import { NewProductsModal } from "./components/NewProductsModal";
+import { ProductsProvider } from "./contexts/ProductsContext";
 import { Home } from "./pages/Home";
-import { Router } from "./Router";
 
 function App() {
   const [isNewProductsModalOpen, setIsNewProductsModalOpen] = useState(false);
@@ -15,13 +15,13 @@ function App() {
     setIsNewProductsModalOpen(false);
   }
   return (
-    <>
+    <ProductsProvider>
       <NewProductsModal
         isOpen={isNewProductsModalOpen}
         onRequestClose={handleCloseNewProductsModal}
       />
       <Home onOpenNewProductsModal={handleOpenNewProductsModal} />
-    </>
+    </ProductsProvider>
   );
 }
 
