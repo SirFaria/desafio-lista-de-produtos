@@ -21,6 +21,7 @@ type TNewProduct = Omit<IProduct, "id" | "createdAt">;
 interface IProductsContextData {
   productList: IProduct[];
   addProduct: (newProduct: TNewProduct) => Promise<void>;
+  removeProduct: (id: string) => Promise<void>;
 }
 
 interface IProductsProviderProps {
@@ -58,12 +59,31 @@ export function ProductsProvider({ children }: IProductsProviderProps) {
     }
   }
 
+  async function removeProduct(id: string) {
+    try {
+      await api.delete(`/products/${id}`);
+      setProductList((state) => state.filter((product) => product.id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function editProduct(id: string) {
+    try {
+      await api.put(`/products/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     getProductList();
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ productList, addProduct }}>
+    <ProductsContext.Provider
+      value={{ productList, addProduct, removeProduct }}
+    >
       {children}
     </ProductsContext.Provider>
   );

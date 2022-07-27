@@ -1,11 +1,16 @@
+import { PencilSimpleLine, Trash } from "phosphor-react";
 import { useProducts } from "../contexts/ProductsContext";
 
 interface HomeProps {
   onOpenNewProductsModal: () => void;
+  onOpenEditProductModal: () => void;
 }
 
-export function Home({ onOpenNewProductsModal }: HomeProps) {
-  const { productList } = useProducts();
+export function Home({
+  onOpenNewProductsModal,
+  onOpenEditProductModal,
+}: HomeProps) {
+  const { productList, removeProduct } = useProducts();
 
   console.log(productList);
 
@@ -36,7 +41,7 @@ export function Home({ onOpenNewProductsModal }: HomeProps) {
               <th className="text-left border border-gray-500 pl-2 text-2xl py-2">
                 Data de criação
               </th>
-              <th className="text-left border border-gray-500 pl-2 text-2xl py-2">
+              <th className="text-center border border-gray-500 pl-2 text-2xl py-2">
                 Ações
               </th>
             </tr>
@@ -59,8 +64,19 @@ export function Home({ onOpenNewProductsModal }: HomeProps) {
                 <td className="border border-gray-500 pl-2 py-1 text-xl ">
                   {product.createdAt}
                 </td>
-                <td className="border border-gray-500 pl-2 py-1 text-xl ">
-                  🙏😎
+                <td className="border text-center border-gray-500 pl-2 py-1 text-xl ">
+                  <button
+                    onClick={() => removeProduct(product.id)}
+                    className="transition-colors duration-300 hover:text-gray-600"
+                  >
+                    <Trash weight="fill" className="h-8 w-8" />
+                  </button>
+                  <button
+                    onClick={onOpenEditProductModal}
+                    className="ml-8 transition-colors duration-300 hover:text-gray-600"
+                  >
+                    <PencilSimpleLine weight="fill" className="h-8 w-8" />
+                  </button>
                 </td>
               </tr>
             ))}
