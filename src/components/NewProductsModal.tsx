@@ -44,6 +44,7 @@ export function NewProductsModal({
 
         <label htmlFor="name">Nome</label>
         <input
+          required
           placeholder="Nome"
           id="name"
           className="mb-6 mt-1 p-2 border border-gray-500 "
@@ -53,6 +54,7 @@ export function NewProductsModal({
 
         <label htmlFor="category">Categoria</label>
         <input
+          required
           placeholder="Categoria"
           id="category"
           className="mb-6 mt-1 p-2 border border-gray-500 "
@@ -62,13 +64,14 @@ export function NewProductsModal({
 
         <label htmlFor="price">Preço</label>
         <input
-          type="number"
+          required
           min={0}
           step={0.01}
-          placeholder="R$"
-          id="price"
-          className="mb-6 mt-1 p-2 border border-gray-500"
           value={price}
+          id="price"
+          type="number"
+          placeholder="R$"
+          className="mb-6 mt-1 p-2 border border-gray-500"
           onChange={(e) => setPrice(Number(e.target.value))}
         />
 

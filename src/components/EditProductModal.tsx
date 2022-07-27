@@ -53,6 +53,7 @@ export function EditProductModal({
         <label htmlFor="name">Nome</label>
         <input
           placeholder="Nome"
+          required
           id="name"
           className="mb-6 mt-1 p-2 border border-gray-500 "
           value={name}
@@ -62,6 +63,7 @@ export function EditProductModal({
         <label htmlFor="category">Categoria</label>
         <input
           placeholder="Categoria"
+          required
           id="category"
           className="mb-6 mt-1 p-2 border border-gray-500 "
           value={category}
@@ -72,6 +74,7 @@ export function EditProductModal({
         <input
           type="number"
           min={0}
+          required
           step={0.01}
           placeholder="R$"
           id="price"
