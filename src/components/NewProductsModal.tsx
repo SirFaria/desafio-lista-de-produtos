@@ -1,7 +1,5 @@
 import { FormEvent, useState } from "react";
 import ReactModal from "react-modal";
-import api from "../services/api";
-import { v4 as uuid } from "uuid";
 import { useProducts } from "../contexts/ProductsContext";
 
 interface NewProductsModalProps {
