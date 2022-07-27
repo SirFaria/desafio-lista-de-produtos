@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import ReactModal from "react-modal";
-import { IProduct, useProducts } from "../contexts/ProductsContext";
+import { useProducts } from "../contexts/ProductsContext";
 
 interface EditProductModalProps {
   isOpen: boolean;
