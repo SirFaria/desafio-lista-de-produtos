@@ -56,7 +56,9 @@ export function Home() {
                   }).format(product.price)}
                 </td>
                 <td className="border border-gray-500 pl-2 py-1 text-xl ">
-                  {product.createdAt}
+                  {new Intl.DateTimeFormat("pt-BR").format(
+                    new Date(product.createdAt)
+                  )}
                 </td>
                 <td className="border text-center border-gray-500 pl-2 py-1 text-xl ">
                   <button
